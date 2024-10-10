@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { TagService } from './tag.service';
 import { TagEntity } from './entities/tag.entity';
 import { TagDto } from './dto/tag.dto';
@@ -16,5 +24,10 @@ export class TagController {
   @Post()
   async createTag(@Body() tagDto: TagDto): Promise<TagEntity> {
     return await this.tagService.create(tagDto);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    this.tagService.delete(id);
   }
 }

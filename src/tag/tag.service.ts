@@ -19,4 +19,8 @@ export class TagService {
     const tag = this.tagRepository.create(tagDto);
     return await this.tagRepository.save(tag);
   }
+
+  async delete(id: number) {
+    await this.tagRepository.delete(id);
+  }
 }
