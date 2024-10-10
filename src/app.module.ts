@@ -3,10 +3,34 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TagModule } from './tag/tag.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormconfig from 'ormconfig';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserEntity } from './users/entities/user.entity';
+import { TagEntity } from './tag/entities/tag.entity';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), TagModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: parseInt(configService.get<string>('DB_PORT')),
+        username: configService.get<string>('DB_USERNAME'),
+        database: configService.get<string>('DB_DATABASE'),
+        password: configService.get<string>('DB_PASSWORD'),
+        entities: [UserEntity, TagEntity],
+      }),
+    }),
+    TagModule,
+    UsersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
