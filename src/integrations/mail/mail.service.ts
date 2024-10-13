@@ -38,6 +38,7 @@ export class MailService {
       this.resetToken.delete(email);
       return false;
     }
+
     return storedToken.token === token;
   }
   generateOTP(forgetPasswordDto: ForgetPasswordDto): string {
