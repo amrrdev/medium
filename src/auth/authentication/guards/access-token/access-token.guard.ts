@@ -31,7 +31,6 @@ export class AccessTokenGuard implements CanActivate {
     try {
       const payload = await this.jwtService.verifyAsync(token, this.jwtConfigrations);
       request[REQUEST_USER_KEY] = payload;
-      console.log('request[REQUEST_USER_KEY]: ', request[REQUEST_USER_KEY]);
     } catch (error) {
       throw new UnauthorizedException(
         'Oops! That token didn’t pass the bouncer. Please log in to get a new one!',
