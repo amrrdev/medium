@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserEntity } from './users/entities/user.entity';
 import { TagEntity } from './tag/entities/tag.entity';
+import { MailModule } from './integrations/mail/mail.module';
+import { ArticleModule } from './article/article.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { TagEntity } from './tag/entities/tag.entity';
     TagModule,
     UsersModule,
     AuthModule,
+    MailModule,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
