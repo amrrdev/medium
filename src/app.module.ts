@@ -6,8 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserEntity } from './users/entities/user.entity';
-import { TagEntity } from './tag/entities/tag.entity';
 import { MailModule } from './integrations/mail/mail.module';
 import { ArticleModule } from './article/article.module';
 
@@ -26,7 +24,7 @@ import { ArticleModule } from './article/article.module';
         username: configService.get<string>('DB_USERNAME'),
         database: configService.get<string>('DB_DATABASE'),
         password: configService.get<string>('DB_PASSWORD'),
-        entities: [UserEntity, TagEntity],
+        autoLoadEntities: true,
       }),
     }),
     TagModule,
