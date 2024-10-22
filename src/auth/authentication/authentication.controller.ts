@@ -36,6 +36,7 @@ export class AuthenticationController {
   }
 
   @Auth(AuthType.NONE)
+  @Serialize(UserDto)
   @Post('reset-password/:token')
   resetPasseord(@Body() resetPasseordDto: ResetPasswordDto, @Param('token') token: string) {
     return this.authenticationService.resetPassword(token, resetPasseordDto);
