@@ -4,6 +4,9 @@
 
 > ### NestJS codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) API spec.
 
+docs: https://amrrdev.github.io/medium-api-docs/
+api: https://medium-production-11ab.up.railway.app/api/v1/articles/
+
 A backend of the Medium platform, focused on articles, comments, tags, user authentication, and authorization. Built using **NestJS**, **PostgreSQL**, **TypeORM** and **JWT** for authentication. This API allows users to create articles, comment on them, manage tags, and handle profiles.
 
 ## Table of Contents
