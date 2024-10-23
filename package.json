@@ -8,8 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "pm2 start ecosystem.config.js",
-    "start:dev": "pm2 start ecosystem.config.js",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "npm run migration:run && node dist/main",
     "migration:generate": "npm run typeorm migration:generate",
